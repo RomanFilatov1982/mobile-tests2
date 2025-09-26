@@ -13,6 +13,7 @@ public interface DeviceConfig extends Config {
     String osVersion();
 
     @Key("deviceHost")
+    @DefaultValue("real")
     String deviceHost();
 
     @Key("appPackage")

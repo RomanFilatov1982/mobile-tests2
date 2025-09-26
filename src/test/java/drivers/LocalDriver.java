@@ -33,10 +33,14 @@ public class LocalDriver implements WebDriverProvider {
                 .setDeviceName(deviceConfig.deviceName())
                 .setApp(getAppPath())
                 .setAppPackage(deviceConfig.appPackage())
-                .setAppActivity(deviceConfig.appActivity());
+                .setAppActivity(deviceConfig.appActivity())
+                .amend("appium:skipDeviceInitialization", true)
+                .amend("appium:ignoreHiddenApiPolicyError", true)
+                .amend("appium:noReset", false)
+                .amend("appium:fullReset", true);
 
         try {
-            return new AndroidDriver(URI.create(remoteConfig.remoteUrl()).toURL(), options);
+            return new AndroidDriver(URI.create("http://127.0.0.1:4723/wd/hub").toURL(), options);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -44,7 +48,7 @@ public class LocalDriver implements WebDriverProvider {
 
     private String getAppPath() {
         String appVersion = "app-alpha-universal-release.apk";
-        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/releases/download/latest/" + appVersion;
+        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia" + "/releases/download/latest/" + appVersion;
         String appPath = "src/test/resources/apps/" + appVersion;
 
         File app = new File(appPath);

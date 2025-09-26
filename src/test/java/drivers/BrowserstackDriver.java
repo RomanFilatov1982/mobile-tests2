@@ -38,7 +38,7 @@ public class BrowserstackDriver implements WebDriverProvider {
         caps.setCapability("os_version", deviceConfig.osVersion());
 
         // Set other BrowserStack capabilities
-        caps.setCapability("project", "First Java Project");
+        caps.setCapability("project", "mobile-test2");
         caps.setCapability("build", "browserstack-build-1");
         caps.setCapability("name", "first_test");
 
