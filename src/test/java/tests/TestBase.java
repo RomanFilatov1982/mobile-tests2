@@ -13,7 +13,9 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import pages.FeedPage;
 
+import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
@@ -44,11 +46,16 @@ public class TestBase {
 
     @AfterEach
     void afterEach() {
-        String sessionId = Selenide.sessionId().toString();
-        System.out.println(sessionId);
+//        String sessionId = Selenide.sessionId().toString();
+//        System.out.println(sessionId);
 
         Attach.pageSource();
         closeWebDriver();
 
+    }
+
+    FeedPage openFeedPage() {
+        back();
+        return new FeedPage();
     }
 }
